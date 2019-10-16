@@ -1,5 +1,4 @@
-cache
-cache-downloads
-inspector
-api
-source/inspector.html
+.venv
+__pycache__
+*.pyo
+*.pyc
