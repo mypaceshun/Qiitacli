@@ -4,6 +4,10 @@ python:
   - "3.7"
 install:
   - ./.travis/install.sh
+  - pipenv install -d codecov
 
 script:
   - ./.travis/run-test.sh
+
+after_success:
+  - codecov
