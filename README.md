@@ -1,5 +1,7 @@
 # QiitaCLI
 
+[![Build Status](https://travis-ci.org/mypaceshun/qiitacli.svg?branch=master)](https://travis-ci.org/mypaceshun/qiitacli)
+
 Qiita CUI Client
 
 CUIでQiitaの投稿をしたくて作ったもの
