@@ -1,11 +1,14 @@
 import os
-import pytest
 from pathlib import Path
+
+import pytest
+
 from qiitacli.accesstoken import (_read_accesstoken_from_stdin,
                                   get_accesstoken, set_accesstoken)
 from qiitacli.exceptions import QiitaCliException
 
 from . import TEST_ACCESSTOKEN_PATH
+
 
 def test_read_accesstoken_from_stdin(monkeypatch):
 
@@ -38,6 +41,7 @@ def test_read_accesstoken_error(monkeypatch):
     with pytest.raises(QiitaCliException):
         _read_accesstoken_from_stdin()
 
+
 def test_set_accesstoken(monkeypatch):
     inputstr = "accesstoken"
 
@@ -55,6 +59,7 @@ def test_set_accesstoken(monkeypatch):
     assert token == inputstr
     os.remove(TEST_ACCESSTOKEN_PATH)
 
+
 def test_set_accesstoken_error(monkeypatch):
     inputstr = "accesstoken"
 
@@ -64,7 +69,8 @@ def test_set_accesstoken_error(monkeypatch):
     monkeypatch.setattr("os.umask", mockreturn)
 
     with pytest.raises(QiitaCliException):
-        token = set_accesstoken(inputstr)
+        set_accesstoken(inputstr)
+
 
 def test_get_accesstoken():
     inputstr = "accesstoken"
@@ -72,10 +78,11 @@ def test_get_accesstoken():
     p = Path(TEST_ACCESSTOKEN_PATH)
     with p.open("w") as f:
         f.write(inputstr)
-    
+
     token = get_accesstoken()
     assert token == inputstr
     os.remove(TEST_ACCESSTOKEN_PATH)
+
 
 def test_get_accesstoken_file_not_exist(monkeypatch):
     inputstr = "accesstoken"
@@ -90,6 +97,7 @@ def test_get_accesstoken_file_not_exist(monkeypatch):
     assert token == inputstr
     os.remove(TEST_ACCESSTOKEN_PATH)
 
+
 def test_get_accesstoken_error(monkeypatch):
     inputstr = "accesstoken"
 
@@ -103,5 +111,5 @@ def test_get_accesstoken_error(monkeypatch):
     monkeypatch.setattr("pathlib.Path.open", mockreturn)
 
     with pytest.raises(QiitaCliException):
-        token = get_accesstoken()
+        get_accesstoken()
     os.remove(TEST_ACCESSTOKEN_PATH)
