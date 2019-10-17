@@ -8,6 +8,8 @@ flake8 = "*"
 autopep8 = "*"
 isort = "*"
 autoflake = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [packages]
 click = "*"
@@ -15,3 +17,6 @@ qiita-v2 = "*"
 
 [requires]
 python_version = "3.6"
+
+[scripts]
+main = "python qiitacli/client.py"

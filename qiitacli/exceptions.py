@@ -1,0 +1,2 @@
+class QiitacliException(Exception):
+    pass
