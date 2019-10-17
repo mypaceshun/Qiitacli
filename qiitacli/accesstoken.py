@@ -46,7 +46,7 @@ def set_accesstoken(token=None):
         token = _read_accesstoken_from_stdin()
 
     try:
-        curr_umask = os.umask(277)
+        curr_umask = os.umask(0o077)
         with tokenpath.open('w') as f:
             f.write(token.strip())
         os.umask(curr_umask)

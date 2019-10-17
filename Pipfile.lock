@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ebd205e715c38ee30299f368b8a9e72b2e5544ed1737bcd6777d5cd3e9c8c2c7"
+            "sha256": "897591d5808d7a3dc1fd82c4209e72a6be788b0ba9fe909d8a77c36064073429"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.6"
+            "python_version": "3"
         },
         "sources": [
             {
@@ -253,6 +253,9 @@
             ],
             "index": "pypi",
             "version": "==2.8.1"
+        },
+        "qiitcli": {
+            "path": "."
         },
         "six": {
             "hashes": [
