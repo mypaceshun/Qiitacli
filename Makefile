@@ -26,7 +26,7 @@ test:
 
 .PHONY: lint
 lint:
-	${PIPENV} run flake8 qiitacli
+	${PIPENV} run flake8 qiitacli tests
 
 .PHONY: format
 format:
@@ -35,8 +35,8 @@ format:
 	    --ignore-init-module-imports \
 	    --remove-unused-variables \
 	    qiitacli
-	${PIPENV} run isort -rc qiitacli
-	${PIPENV} run autopep8 -ir qiitacli
+	${PIPENV} run isort -rc qiitacli tests
+	${PIPENV} run autopep8 -ir qiitacli tests
 
 .PHONY: clean
 clean:
