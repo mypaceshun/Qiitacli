@@ -16,7 +16,7 @@ click = "*"
 qiita-v2 = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3"
 
 [scripts]
 main = "python qiitacli/client.py"

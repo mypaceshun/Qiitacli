@@ -18,7 +18,7 @@ usage:
 
 .PHONY: init
 init:
-	${PIPENV} sync -d
+	${PIPENV} install -d
 
 .PHONY: test
 test:
