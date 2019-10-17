@@ -1,7 +1,7 @@
+import os
 from click.testing import CliRunner
 
 from qiitacli.client import cmd
-
 
 def test_client_command():
     runner = CliRunner()
