@@ -1,3 +1,4 @@
+import pytest
 from click.testing import CliRunner
 
 from qiitacli.client import cmd
@@ -10,29 +11,26 @@ def test_client_command():
     assert result.exit_code == 0
 
 
-def test_client_upload():
+sub_commands = [
+    ('upload'),
+    ('update'),
+    ('list'),
+    ('status'),
+    ('delete'),
+]
+
+
+@pytest.mark.parametrize("sub", sub_commands)
+def test_subcommand(sub):
     runner = CliRunner()
-    result = runner.invoke(cmd, ['upload', '--help'])
+    result = runner.invoke(cmd, [sub, '--help'])
     print(result.output)
     assert result.exit_code == 0
 
 
-def test_client_upload_verbose():
+@pytest.mark.parametrize("sub", sub_commands)
+def test_subcommand_verbose(sub):
     runner = CliRunner()
-    result = runner.invoke(cmd, ['--verbose', 'upload', '--help'])
-    print(result.output)
-    assert result.exit_code == 0
-
-
-def test_client_list():
-    runner = CliRunner()
-    result = runner.invoke(cmd, ['list', '--help'])
-    print(result.output)
-    assert result.exit_code == 0
-
-
-def test_client_status():
-    runner = CliRunner()
-    result = runner.invoke(cmd, ['status', '--help'])
+    result = runner.invoke(cmd, ['--verbose', sub, '--help'])
     print(result.output)
     assert result.exit_code == 0

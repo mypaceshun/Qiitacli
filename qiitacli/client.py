@@ -2,6 +2,7 @@
 
 import click
 from qiita_v2.client import QiitaClient
+from qiita_v2.exception import QiitaApiException
 
 from qiitacli.accesstoken import get_accesstoken
 
@@ -28,7 +29,12 @@ def list(id, date, tags, url, separator):
     '''
     token = get_accesstoken()
     client = QiitaClient(access_token=token)
-    res = client.get_authenticated_user_items()
+    res = None
+    try:
+        res = client.get_authenticated_user_items()
+    except QiitaApiException as error:
+        click.echo('Command failur: {}'.format(error))
+        raise click.Abort()
 
     str_header = ''
     str_format = ''
@@ -78,10 +84,65 @@ def upload(title, article, private, tags, tweet):
     '''
     Upload new article
     '''
+    if VERBOSE:
+        click.echo('title: [{}]'.format(title))
+        click.echo('articlefile: [{}]'.format(article.name))
+
+    token = get_accesstoken()
+    client = QiitaClient(access_token=token)
+    params = {}
 
     body = ''.join(article.readlines())
-    click.echo(title)
-    click.echo(body)
+    params['body'] = body
+    params['title'] = title
+    params['private'] = private
+    tag_and_versions = []
+    for tag in tags:
+        tag_and_versions.append({
+            'name': tag,
+        })
+    params['tags'] = tag_and_versions
+    params['tweet'] = tweet
+
+    if VERBOSE:
+        click.echo('post params: {}'.format(params))
+
+    res = None
+    try:
+        res = client.create_item(params=params)
+    except QiitaApiException as error:
+        click.echo('Command failur: {}'.format(error))
+        raise click.Abort()
+    click.echo('status code: {}'.format(res.status))
+    if VERBOSE:
+        click.echo('response json: {}'.format(res.to_json()))
+
+
+@cmd.command()
+@click.argument('article_id', required=True)
+@click.option('--force', '-f', is_flag=True, help='Force delete article')
+def delete(article_id, force):
+    '''
+    Delete article
+    '''
+    token = get_accesstoken()
+    client = QiitaClient(access_token=token)
+    res = None
+    try:
+        res = client.get_item(article_id)
+    except QiitaApiException as error:
+        click.echo('Command failur: {}'.format(error))
+        raise click.Abort()
+    title = res.to_json()['title']
+    click.echo('title: {}'.format(title))
+    if not force:
+        click.confirm('Are you sure you want to delete?', abort=True)
+    try:
+        res = client.delete_item(article_id)
+        click.echo('status code: {}'.format(res.status))
+    except QiitaApiException as error:
+        click.echo('Command failur: {}'.format(error))
+        raise click.Abort()
 
 
 @cmd.command()
@@ -91,7 +152,12 @@ def status():
     '''
     token = get_accesstoken()
     client = QiitaClient(access_token=token)
-    res = client.get_authenticated_user()
+    res = None
+    try:
+        res = client.get_authenticated_user()
+    except QiitaApiException as error:
+        click.echo('Command failur: {}'.format(error))
+        raise click.Abort()
     output_str = '''id              : {id}
 name            : {name}
 location        : {location}
