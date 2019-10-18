@@ -69,11 +69,15 @@ def list(id, date, tags, url, separator):
 
 
 @cmd.command()
-def add():
-    '''
-    Add new article
-    '''
-    print("add")
+@click.argument('title', required=True)
+@click.argument('article', required=True, type=click.File('r'))  # noqa E501
+@click.option('--private', '-p', is_flag=True, help='Private article')
+@click.option('--tags', '-t', multiple=True, help='Article tags')
+@click.option('--tweet', '-T', is_flag=True, help='Tweet when article upload[Require Twitter linkage settnigs]')  # noqa E501
+def add(title, article, private, tags, tweet):
+    body = ''.join(article.readlines())
+    click.echo(title)
+    click.echo(body)
 
 
 @cmd.command()

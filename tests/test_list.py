@@ -15,13 +15,14 @@ def test_list():
     assert result.exit_code == 0
     remove_accesstoken()
 
-@pytest.mark.parametrize("option",[
+
+@pytest.mark.parametrize("option", [
     (['--id']),
     (['--date']),
     (['--tags']),
     (['--url']),
     (['--separator', ',']),
-    ])
+])
 def test_list_with_option(option):
     token = load_accesstoken()
     write_accesstoken(token)
@@ -30,4 +31,3 @@ def test_list_with_option(option):
     print(result.output)
     assert result.exit_code == 0
     remove_accesstoken()
-
