@@ -146,6 +146,60 @@ def delete(article_id, force):
 
 
 @cmd.command()
+@click.argument('article_id', required=True)
+@click.argument('article', required=True, type=click.File('r'))  # noqa E501
+@click.option('--private', '-p', is_flag=True, help='Private article')
+@click.option('--tags', '-t', multiple=True, help='Article tags')
+@click.option('--force', '-f', is_flag=True, help='Force update article')
+def update(article_id, article, private, tags, force):
+    '''
+    Update article
+    '''
+    if VERBOSE:
+        click.echo('article id: [{}]'.format(article_id))
+
+    token = get_accesstoken()
+    client = QiitaClient(access_token=token)
+    res = None
+    try:
+        res = client.get_item(article_id)
+    except QiitaApiException as error:
+        click.echo('Command failur: {}'.format(error))
+        raise click.Abort()
+    title = res.to_json()['title']
+    click.echo('title: {}'.format(title))
+    click.echo('articlefile: [{}]'.format(article.name))
+    if not force:
+        click.confirm('Are you sure you want to update?', abort=True)
+
+    params = {}
+    body = ''.join(article.readlines())
+    params['body'] = body
+    params['title'] = title
+    params['private'] = private
+    tag_and_versions = []
+    for tag in tags:
+        tag_and_versions.append({
+            'name': tag,
+        })
+    if len(tag_and_versions) > 0:
+        params['tags'] = tag_and_versions
+
+    if VERBOSE:
+        click.echo('patch params: {}'.format(params))
+
+    res = None
+    try:
+        res = client.update_item(article_id, params=params)
+    except QiitaApiException as error:
+        click.echo('Command failur: {}'.format(error))
+        raise click.Abort()
+    click.echo('status code: {}'.format(res.status))
+    if VERBOSE:
+        click.echo('response json: {}'.format(res.to_json()))
+
+
+@cmd.command()
 def status():
     '''
     Show authenticated user data
