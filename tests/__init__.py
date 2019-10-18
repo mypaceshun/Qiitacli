@@ -19,10 +19,12 @@ def load_accesstoken():
 
     return 'accesstoken'  # :-(
 
+
 def write_accesstoken(token):
     token_path = Path(TEST_ACCESSTOKEN_PATH)
     with token_path.open("w") as f:
         f.write(token)
+
 
 def remove_accesstoken():
     os.remove(TEST_ACCESSTOKEN_PATH)

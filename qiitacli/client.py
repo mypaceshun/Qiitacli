@@ -17,7 +17,12 @@ def cmd(verbose):
 
 
 @cmd.command()
-def list():
+@click.option('--id', '-i', is_flag=True, help='Show with article id')
+@click.option('--date', '-d', is_flag=True, help='Show with article update date')  # noqa E501
+@click.option('--tags', '-t', is_flag=True, help='Show with article tags')
+@click.option('--url', '-u', is_flag=True, help='Show with article url')
+@click.option('--separator', '-s', help='separator')
+def list(id, date, tags, url, separator):
     '''
     List your article
     '''
@@ -25,17 +30,38 @@ def list():
     client = QiitaClient(access_token=token)
     res = client.get_authenticated_user_items()
 
-    str_header = 'date | url | title | tags\n'
-    str_format = '{date} | {url} | {title} | {tags}\n'
+    str_header = ''
+    str_format = ''
+    if separator is None:
+        separator = '|'
+    if id:
+        str_header += 'id' + separator
+        str_format += '{id}' + separator
+    if date:
+        str_header += 'date' + separator
+        str_format += '{date}' + separator
+    str_header += 'title'
+    str_format += '{title}'
+    if tags:
+        str_header += separator + 'tags'
+        str_format += separator + '{tags}'
+    if url:
+        str_header += separator + 'url'
+        str_format += separator + '{url}'
+    str_header += '\n'
+    str_format += '\n'
+
     output_str = str_header
 
     for article in res.to_json():
+        id = article['id']
         date = article['updated_at']
         url = article['url']
         title = article['title']
         tags_list = [t['name'] for t in article['tags']]
         tags = ','.join(tags_list)
-        output_str += str_format.format(date=date,
+        output_str += str_format.format(id=id,
+                                        date=date,
                                         url=url,
                                         title=title,
                                         tags=tags)

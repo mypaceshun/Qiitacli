@@ -1,7 +1,7 @@
-import os
 from click.testing import CliRunner
 
 from qiitacli.client import cmd
+
 
 def test_client_command():
     runner = CliRunner()
@@ -29,6 +29,7 @@ def test_client_list():
     result = runner.invoke(cmd, ['list', '--help'])
     print(result.output)
     assert result.exit_code == 0
+
 
 def test_client_status():
     runner = CliRunner()
