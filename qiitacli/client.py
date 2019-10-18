@@ -167,7 +167,7 @@ def update(article_id, article, private, tags, force):
         click.echo('Command failur: {}'.format(error))
         raise click.Abort()
     title = res.to_json()['title']
-    click.echo('title: {}'.format(title))
+    click.echo('title: [{}]'.format(title))
     click.echo('articlefile: [{}]'.format(article.name))
     if not force:
         click.confirm('Are you sure you want to update?', abort=True)
