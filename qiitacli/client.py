@@ -9,7 +9,7 @@ VERBOSE = False
 
 
 @click.group()
-@click.option('--verbose', '-v', is_flag=True)
+@click.option('--verbose', '-v', is_flag=True, help='Verbose output')
 def cmd(verbose):
     global VERBOSE
     if verbose:
@@ -74,7 +74,11 @@ def list(id, date, tags, url, separator):
 @click.option('--private', '-p', is_flag=True, help='Private article')
 @click.option('--tags', '-t', multiple=True, help='Article tags')
 @click.option('--tweet', '-T', is_flag=True, help='Tweet when article upload[Require Twitter linkage settnigs]')  # noqa E501
-def add(title, article, private, tags, tweet):
+def upload(title, article, private, tags, tweet):
+    '''
+    Upload new article
+    '''
+
     body = ''.join(article.readlines())
     click.echo(title)
     click.echo(body)

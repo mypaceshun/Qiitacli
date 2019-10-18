@@ -10,16 +10,16 @@ def test_client_command():
     assert result.exit_code == 0
 
 
-def test_client_add():
+def test_client_upload():
     runner = CliRunner()
-    result = runner.invoke(cmd, ['add', '--help'])
+    result = runner.invoke(cmd, ['upload', '--help'])
     print(result.output)
     assert result.exit_code == 0
 
 
-def test_client_add_verbose():
+def test_client_upload_verbose():
     runner = CliRunner()
-    result = runner.invoke(cmd, ['--verbose', 'add', '--help'])
+    result = runner.invoke(cmd, ['--verbose', 'upload', '--help'])
     print(result.output)
     assert result.exit_code == 0
 

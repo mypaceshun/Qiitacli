@@ -5,11 +5,11 @@ from qiitacli.client import cmd
 from . import load_accesstoken, remove_accesstoken, write_accesstoken
 
 
-def test_add():
+def test_upload():
     token = load_accesstoken()
     write_accesstoken(token)
     runner = CliRunner()
-    result = runner.invoke(cmd, ['add', '--help'])
+    result = runner.invoke(cmd, ['upload', '--help'])
     print(result.output)
     assert result.exit_code == 0
     remove_accesstoken()
