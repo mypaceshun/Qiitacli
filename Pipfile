@@ -13,8 +13,6 @@ pytest-cov = "*"
 qiitcli = {path = "."}
 
 [packages]
-click = "*"
-qiita-v2 = "*"
 
 [requires]
 python_version = "3"

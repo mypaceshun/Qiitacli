@@ -41,3 +41,4 @@ format:
 .PHONY: clean
 clean:
 	${PIPENV} --rm
+	rm -rf build dist *egg-info
