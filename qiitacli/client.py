@@ -5,6 +5,8 @@ from qiita_v2.client import QiitaClient
 from qiita_v2.exception import QiitaApiException
 
 from qiitacli.accesstoken import get_accesstoken
+from qiitacli.option_parser import parse
+from qiitacli.exceptions import QiitaCliParseError
 
 VERBOSE = False
 
@@ -33,7 +35,7 @@ def list(id, date, tags, url, separator):
     try:
         res = client.get_authenticated_user_items()
     except QiitaApiException as error:
-        click.echo('Command failur: {}'.format(error))
+        click.echo('Command failed: {}'.format(error))
         raise click.Abort()
 
     str_header = ''
@@ -75,28 +77,33 @@ def list(id, date, tags, url, separator):
 
 
 @cmd.command()
-@click.argument('title', required=True)
 @click.argument('article', required=True, type=click.File('r'))  # noqa E501
-@click.option('--private', '-p', is_flag=True, help='Private article')
-@click.option('--tags', '-t', multiple=True, help='Article tags')
 @click.option('--force', '-f', is_flag=True, help='Force upload article')
 @click.option('--tweet', '-T', is_flag=True, help='Tweet when article upload[Require Twitter linkage settnigs]')  # noqa E501
-def upload(title, article, private, tags, force, tweet):
+def upload(article, force, tweet):
     '''
     Upload new article
     '''
     if VERBOSE:
-        click.echo('title: [{}]'.format(title))
         click.echo('articlefile: [{}]'.format(article.name))
 
     token = get_accesstoken()
     client = QiitaClient(access_token=token)
     params = {}
 
-    body = ''.join(article.readlines())
+
+    option_with_body = None
+    try:
+        option_with_body = parse(article)
+    except QiitaCliParseError as error:
+        click.echo('Command failed: {}'.format(error))
+        raise click.Abort()
+    body = option_with_body['body']
+    options = option_with_body['options']
     params['body'] = body
-    params['title'] = title
-    params['private'] = private
+    params['title'] = options['title']
+    params['private'] = options.get('private', False)
+    tags = options['tags']
     tag_and_versions = []
     for tag in tags:
         tag_and_versions.append({
@@ -115,7 +122,7 @@ def upload(title, article, private, tags, force, tweet):
     try:
         res = client.create_item(params=params)
     except QiitaApiException as error:
-        click.echo('Command failur: {}'.format(error))
+        click.echo('Command failed: {}'.format(error))
         raise click.Abort()
     click.echo('status code: {}'.format(res.status))
     if VERBOSE:
@@ -135,7 +142,7 @@ def delete(article_id, force):
     try:
         res = client.get_item(article_id)
     except QiitaApiException as error:
-        click.echo('Command failur: {}'.format(error))
+        click.echo('Command failed: {}'.format(error))
         raise click.Abort()
     title = res.to_json()['title']
     click.echo('title: {}'.format(title))
@@ -145,7 +152,7 @@ def delete(article_id, force):
         res = client.delete_item(article_id)
         click.echo('status code: {}'.format(res.status))
     except QiitaApiException as error:
-        click.echo('Command failur: {}'.format(error))
+        click.echo('Command failed: {}'.format(error))
         raise click.Abort()
 
 
@@ -168,7 +175,7 @@ def update(article_id, article, private, tags, force):
     try:
         res = client.get_item(article_id)
     except QiitaApiException as error:
-        click.echo('Command failur: {}'.format(error))
+        click.echo('Command failed: {}'.format(error))
         raise click.Abort()
     title = res.to_json()['title']
     click.echo('title: [{}]'.format(title))
@@ -196,7 +203,7 @@ def update(article_id, article, private, tags, force):
     try:
         res = client.update_item(article_id, params=params)
     except QiitaApiException as error:
-        click.echo('Command failur: {}'.format(error))
+        click.echo('Command failed: {}'.format(error))
         raise click.Abort()
     click.echo('status code: {}'.format(res.status))
     if VERBOSE:
@@ -214,7 +221,7 @@ def status():
     try:
         res = client.get_authenticated_user()
     except QiitaApiException as error:
-        click.echo('Command failur: {}'.format(error))
+        click.echo('Command failed: {}'.format(error))
         raise click.Abort()
     output_str = '''id              : {id}
 name            : {name}
