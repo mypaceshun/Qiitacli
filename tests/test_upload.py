@@ -8,6 +8,17 @@ from qiita_v2.exception import QiitaApiException
 from . import load_accesstoken, remove_accesstoken, write_accesstoken
 
 
+dammy_article_text = '''
+title: dammy article
+tags:
+    - dammy
+    - article
+private: yes
+---
+# dammy article
+'''
+
+
 def dammy_post_success(*args, **kwargs):
     class dammy_response:
         status = 200
@@ -26,16 +37,13 @@ def test_upload(monkeypatch):
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
     with dammy_article.open('w') as f:
-        f.write('# dammy article')
+        f.write(dammy_article_text)
 
     token = load_accesstoken()
     write_accesstoken(token)
     runner = CliRunner()
     commands = ['upload',
-                '--private',
-                '--tags', 'test',
                 '--tweet',
-                'DammyArticle',
                 dammy_article_path]
     result = runner.invoke(cmd, commands, input='y')
     print(result.output)
@@ -50,17 +58,14 @@ def test_upload_error(monkeypatch):
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
     with dammy_article.open('w') as f:
-        f.write('# dammy article')
+        f.write(dammy_article_text)
 
     token = load_accesstoken()
     write_accesstoken(token)
     runner = CliRunner()
     commands = ['upload',
-                '--private',
-                '--tags', 'test',
                 '--tweet',
                 '--force',
-                'DammyArticle',
                 dammy_article_path]
     result = runner.invoke(cmd, commands)
     print(result.output)

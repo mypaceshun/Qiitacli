@@ -7,6 +7,16 @@ from qiita_v2.exception import QiitaApiException
 
 from . import load_accesstoken, remove_accesstoken, write_accesstoken
 
+dammy_article_text = '''
+title: dammy article
+tags:
+    - dammy
+    - article
+private: yes
+---
+# dammy article
+'''
+
 
 def dammy_patch_success(*args, **kwargs):
     class dammy_response:
@@ -38,14 +48,12 @@ def test_update(monkeypatch):
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
     with dammy_article.open('w') as f:
-        f.write('# dammy article')
+        f.write(dammy_article_text)
 
     token = load_accesstoken()
     write_accesstoken(token)
     runner = CliRunner()
     commands = ['update',
-                '--private',
-                '--tags', 'test',
                 'DammyArticleID',
                 dammy_article_path]
     result = runner.invoke(cmd, commands, input='y')
@@ -61,15 +69,13 @@ def test_update_error_invalid_article_id(monkeypatch):
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
     with dammy_article.open('w') as f:
-        f.write('# dammy article')
+        f.write(dammy_article_text)
 
     token = load_accesstoken()
     write_accesstoken(token)
     runner = CliRunner()
     commands = ['update',
-                '--private',
                 '--force',
-                '--tags', 'test',
                 'InvalidArticleID',
                 dammy_article_path]
     result = runner.invoke(cmd, commands)
@@ -86,15 +92,13 @@ def test_update_error(monkeypatch):
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
     with dammy_article.open('w') as f:
-        f.write('# dammy article')
+        f.write(dammy_article_text)
 
     token = load_accesstoken()
     write_accesstoken(token)
     runner = CliRunner()
     commands = ['update',
-                '--private',
                 '--force',
-                '--tags', 'test',
                 'DammyArticleID',
                 dammy_article_path]
     result = runner.invoke(cmd, commands)
