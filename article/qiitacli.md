@@ -1,3 +1,10 @@
+---
+title: Qiita CLI Applicationを作ってみた
+tags:
+  - Python
+  - Click
+private: yes
+---
 # ことのはじまり
 
 Qiitaに記事書きたいけどブラウザ開いていちいちQiitaのエディタ開くのめんどいな〜
