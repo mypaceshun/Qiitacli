@@ -37,7 +37,7 @@ def test_upload(monkeypatch):
                 '--tweet',
                 'DammyArticle',
                 dammy_article_path]
-    result = runner.invoke(cmd, commands)
+    result = runner.invoke(cmd, commands, input='y')
     print(result.output)
     assert result.exit_code == 0
 
@@ -59,6 +59,7 @@ def test_upload_error(monkeypatch):
                 '--private',
                 '--tags', 'test',
                 '--tweet',
+                '--force',
                 'DammyArticle',
                 dammy_article_path]
     result = runner.invoke(cmd, commands)

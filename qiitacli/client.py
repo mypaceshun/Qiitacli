@@ -79,8 +79,9 @@ def list(id, date, tags, url, separator):
 @click.argument('article', required=True, type=click.File('r'))  # noqa E501
 @click.option('--private', '-p', is_flag=True, help='Private article')
 @click.option('--tags', '-t', multiple=True, help='Article tags')
+@click.option('--force', '-f', is_flag=True, help='Force upload article')
 @click.option('--tweet', '-T', is_flag=True, help='Tweet when article upload[Require Twitter linkage settnigs]')  # noqa E501
-def upload(title, article, private, tags, tweet):
+def upload(title, article, private, tags, force, tweet):
     '''
     Upload new article
     '''
@@ -106,6 +107,9 @@ def upload(title, article, private, tags, tweet):
 
     if VERBOSE:
         click.echo('post params: {}'.format(params))
+
+    if not force:
+        click.confirm('Are you sure you want to delete?', abort=True)
 
     res = None
     try:
