@@ -159,10 +159,8 @@ def delete(article_id, force):
 @cmd.command()
 @click.argument('article_id', required=True)
 @click.argument('article', required=True, type=click.File('r'))  # noqa E501
-@click.option('--private', '-p', is_flag=True, help='Private article')
-@click.option('--tags', '-t', multiple=True, help='Article tags')
 @click.option('--force', '-f', is_flag=True, help='Force update article')
-def update(article_id, article, private, tags, force):
+def update(article_id, article, force):
     '''
     Update article
     '''
@@ -184,17 +182,24 @@ def update(article_id, article, private, tags, force):
         click.confirm('Are you sure you want to update?', abort=True)
 
     params = {}
-    body = ''.join(article.readlines())
+    option_with_body = None
+    try:
+        option_with_body = parse(article)
+    except QiitaCliParseError as error:
+        click.echo('Command failed: {}'.format(error))
+        raise click.Abort()
+    body = option_with_body['body']
+    options = option_with_body['options']
     params['body'] = body
-    params['title'] = title
-    params['private'] = private
+    params['title'] = options['title']
+    params['private'] = options.get('private', False)
+    tags = options['tags']
     tag_and_versions = []
     for tag in tags:
         tag_and_versions.append({
             'name': tag,
         })
-    if len(tag_and_versions) > 0:
-        params['tags'] = tag_and_versions
+    params['tags'] = tag_and_versions
 
     if VERBOSE:
         click.echo('patch params: {}'.format(params))
