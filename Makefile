@@ -14,6 +14,7 @@ usage:
 	@echo "Targets:"
 	@echo "  init           init for develop"
 	@echo "  test           run pytest"
+	@echo "  doc            build document"
 	@echo "  build          package build"
 	@echo "  upload         upload to ${TARGET}"
 	@echo "    TARGET=pypi  upload to pypi"
@@ -28,6 +29,12 @@ init:
 .PHONY: test
 test:
 	${PIPENV} run python -m pytest tests
+
+.PHONY: doc
+doc:
+	${PIPENV} run sphinx-apidoc -f -o docs_build/ qiitacli/
+	${PIPENV} run make -C docs_build/ html
+	cp -rfv docs_build/_build/html/* docs/
 
 .PHONY: build
 build:

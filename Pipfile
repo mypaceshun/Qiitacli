@@ -12,6 +12,8 @@ pytest = "*"
 pytest-cov = "*"
 qiitcli = {path = "."}
 twine = "*"
+sphinx = "*"
+sphinx-git = "*"
 
 [packages]
 

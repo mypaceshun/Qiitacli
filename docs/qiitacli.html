@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>qiitacli package &#8212; qiitacli  ドキュメント</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="qiitacli-package">
+<h1>qiitacli package<a class="headerlink" href="#qiitacli-package" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="module-qiitacli.accesstoken">
+<span id="qiitacli-accesstoken-module"></span><h2>qiitacli.accesstoken module<a class="headerlink" href="#module-qiitacli.accesstoken" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="function">
+<dt id="qiitacli.accesstoken.get_accesstoken">
+<code class="sig-prename descclassname">qiitacli.accesstoken.</code><code class="sig-name descname">get_accesstoken</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qiitacli/accesstoken.html#get_accesstoken"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.accesstoken.get_accesstoken" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>get accesstoken from ACCESSTOKEN_PATH
+When accesstoken is not set, Accesstoken read from stdin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値</dt>
+<dd class="field-odd"><p>AccessToken</p>
+</dd>
+<dt class="field-even">戻り値の型</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Exceptions:</dt><dd><p>QiitaCliException</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="qiitacli.accesstoken.set_accesstoken">
+<code class="sig-prename descclassname">qiitacli.accesstoken.</code><code class="sig-name descname">set_accesstoken</code><span class="sig-paren">(</span><em class="sig-param">token=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qiitacli/accesstoken.html#set_accesstoken"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.accesstoken.set_accesstoken" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>set accesstoken
+When token is None, Accesstoken read from stdin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>str</strong> (<em>token</em>) -- AccessToken</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-qiitacli.client">
+<span id="qiitacli-client-module"></span><h2>qiitacli.client module<a class="headerlink" href="#module-qiitacli.client" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="module-qiitacli.exceptions">
+<span id="qiitacli-exceptions-module"></span><h2>qiitacli.exceptions module<a class="headerlink" href="#module-qiitacli.exceptions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="exception">
+<dt id="qiitacli.exceptions.QiitaCliException">
+<em class="property">exception </em><code class="sig-prename descclassname">qiitacli.exceptions.</code><code class="sig-name descname">QiitaCliException</code><a class="reference internal" href="_modules/qiitacli/exceptions.html#QiitaCliException"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.exceptions.QiitaCliException" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="qiitacli.exceptions.QiitaCliParseError">
+<em class="property">exception </em><code class="sig-prename descclassname">qiitacli.exceptions.</code><code class="sig-name descname">QiitaCliParseError</code><a class="reference internal" href="_modules/qiitacli/exceptions.html#QiitaCliParseError"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.exceptions.QiitaCliParseError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#qiitacli.exceptions.QiitaCliException" title="qiitacli.exceptions.QiitaCliException"><code class="xref py py-class docutils literal notranslate"><span class="pre">qiitacli.exceptions.QiitaCliException</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-qiitacli.option_parser">
+<span id="qiitacli-option-parser-module"></span><h2>qiitacli.option_parser module<a class="headerlink" href="#module-qiitacli.option_parser" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="function">
+<dt id="qiitacli.option_parser.parse">
+<code class="sig-prename descclassname">qiitacli.option_parser.</code><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">filestream</em>, <em class="sig-param">separator='---'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qiitacli/option_parser.html#parse"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.option_parser.parse" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Parse options and body from FileStream</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_io.TextIOWrapper</strong> (<em>filestream</em>) -- parse file stream object</p></li>
+<li><p><strong>str</strong> (<em>separator</em>) -- separator for options and body</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>{'options': options, 'body': body}</p>
+</dd>
+<dt class="field-odd">戻り値の型</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">例外</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qiitacli.exceptions.QiitaCliParseError" title="qiitacli.exceptions.QiitaCliParseError"><strong>QiitaCliParseError</strong></a> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="qiitacli.option_parser.parse_body">
+<code class="sig-prename descclassname">qiitacli.option_parser.</code><code class="sig-name descname">parse_body</code><span class="sig-paren">(</span><em class="sig-param">lines</em>, <em class="sig-param">separator='---'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qiitacli/option_parser.html#parse_body"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.option_parser.parse_body" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Parse options and body from FileStream</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list</strong> (<em>lines</em>) -- string list</p></li>
+<li><p><strong>str</strong> (<em>separator</em>) -- separator for options and body</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>body</p>
+</dd>
+<dt class="field-odd">戻り値の型</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">例外</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qiitacli.exceptions.QiitaCliParseError" title="qiitacli.exceptions.QiitaCliParseError"><strong>QiitaCliParseError</strong></a> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="qiitacli.option_parser.parse_option">
+<code class="sig-prename descclassname">qiitacli.option_parser.</code><code class="sig-name descname">parse_option</code><span class="sig-paren">(</span><em class="sig-param">lines</em>, <em class="sig-param">separator='---'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qiitacli/option_parser.html#parse_option"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.option_parser.parse_option" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Parse options and body from FileStream</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list</strong> (<em>lines</em>) -- string list</p></li>
+<li><p><strong>str</strong> (<em>separator</em>) -- separator for options and body</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>options</p>
+</dd>
+<dt class="field-odd">戻り値の型</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">例外</dt>
+<dd class="field-even"><p><a class="reference internal" href="#qiitacli.exceptions.QiitaCliParseError" title="qiitacli.exceptions.QiitaCliParseError"><strong>QiitaCliParseError</strong></a> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-qiitacli">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-qiitacli" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">qiitacli</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">更新履歴</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, KAWAI Shun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/qiitacli.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
