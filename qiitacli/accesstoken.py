@@ -24,7 +24,7 @@ def get_accesstoken():
 
     try:
         with tokenpath.open('r') as f:
-            token = f.readline()
+            token = f.readline().strip()
             return token
     except OSError as err:
         msg = 'AccessToken file Read Error: {}'.format(err)
