@@ -1,5 +1,5 @@
-QiitaCLI
-========
+Welcome to QiitaCLI's documentation!
+====================================
 
 | |Build Status|
 | |codecov|

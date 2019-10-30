@@ -1,4 +1,4 @@
-# QiitaCLI
+# Welcome to QiitaCLI's documentation!
 
 [![Build Status](https://travis-ci.org/mypaceshun/qiitacli.svg?branch=master)](https://travis-ci.org/mypaceshun/qiitacli)
 [![codecov](https://codecov.io/gh/mypaceshun/qiitacli/branch/master/graph/badge.svg)](https://codecov.io/gh/mypaceshun/qiitacli)
