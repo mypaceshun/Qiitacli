@@ -34,7 +34,7 @@ test:
 doc:
 	${PIPENV} run sphinx-apidoc -f -o docs_build/ qiitacli/
 	${PIPENV} run make -C docs_build/ html
-	cp -rfv docs_build/_build/html/* docs/
+	cp -afvT docs_build/_build/html docs
 
 .PHONY: build
 build:
