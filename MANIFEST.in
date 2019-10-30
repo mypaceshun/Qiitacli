@@ -1,1 +1,7 @@
-include etc
+include LICENSE
+include Makefile
+include Pipfile
+include README.md
+include requirements.txt
+include setup.cfg
+include setup.py
