@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>2. 記事の一覧取得 &#8212; qiitacli  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3. 記事の投稿" href="upload.html" />
+    <link rel="prev" title="1. 記事用ファイルの作成" href="article.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>2. 記事の一覧取得<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>記事の一覧取得には <code class="docutils literal notranslate"><span class="pre">list</span></code> サブコマンドを用います。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli list --help
+Usage: qiitacli list [OPTIONS]
+
+  List your article
+
+Options:
+  -i, --id              Show with article id
+  -d, --date            Show with article update date
+  -t, --tags            Show with article tags
+  -u, --url             Show with article url
+  -s, --separator TEXT  separator
+  --help                Show this message and exit.
+</pre></div>
+</div>
+<p>オプション無しで実行するとアクセストークンで認証しているユーザーの投稿した記事の一覧が出力されます。
+1行目がヘッダーで2行目以降が取得した記事のタイトル一覧になります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli list
+title
+Qiita CLI Application 作ってみた
+ansible 〜つなぐ〜
+pythonアプリケーションをrpmにパッケージング
+specファイル大解剖
+XAMPPでApacheを起動しAndroidから接続
+AndroidStudio2.0をインストールしてみる
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>ページネーションの処理が未実装なので最新20件までしか表示されません。
+そのうち実装します。</p>
+</div>
+<p>オプションを追加することで、表示される情報の量を増やすことが出来ます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli list -i
+id|title
+c3b97c4eee490d662092|Qiita CLI Application 作ってみた
+ab441d26a12489d5fcbd|ansible 〜つなぐ〜
+b1f3786ce0580201a9e1|pythonアプリケーションをrpmにパッケージング
+5067561d6739cc9e5199|specファイル大解剖
+feedced17884d798fbbd|XAMPPでApacheを起動しAndroidから接続
+c489327d525522de5e65|AndroidStudio2.0をインストールしてみる
+</pre></div>
+</div>
+<p>オプションは複数まとめて追加できます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli list -idu
+id|date|title|url
+c3b97c4eee490d662092|2019-10-18T19:35:23+09:00|Qiita CLI Application 作ってみた|https://qiita.com/mypaceshun/items/c3b97c4eee490d662092
+ab441d26a12489d5fcbd|2019-02-01T11:37:55+09:00|ansible 〜つなぐ〜|https://qiita.com/mypaceshun/items/ab441d26a12489d5fcbd
+b1f3786ce0580201a9e1|2018-12-16T07:01:55+09:00|pythonアプリケーションをrpmにパッケージング|https://qiita.com/mypaceshun/items/b1f3786ce0580201a9e1
+5067561d6739cc9e5199|2018-12-19T10:58:45+09:00|specファイル大解剖|https://qiita.com/mypaceshun/items/5067561d6739cc9e5199
+feedced17884d798fbbd|2016-03-14T13:03:04+09:00|XAMPPでApacheを起動しAndroidから接続|https://qiita.com/mypaceshun/items/feedced17884d798fbbd
+c489327d525522de5e65|2016-02-15T10:48:32+09:00|AndroidStudio2.0をインストールしてみる|https://qiita.com/mypaceshun/items/c489327d525522de5e65
+</pre></div>
+</div>
+<p>-sオプションを使うと区切り文字を変更できます。
+例えば区切り文字をカンマなどにするとCSVファイルのような形式で出力されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli list -idu -s ,
+id,date,title,url
+c3b97c4eee490d662092,2019-10-18T19:35:23+09:00,Qiita CLI Application 作ってみた,https://qiita.com/mypaceshun/items/c3b97c4eee490d662092
+ab441d26a12489d5fcbd,2019-02-01T11:37:55+09:00,ansible 〜つなぐ〜,https://qiita.com/mypaceshun/items/ab441d26a12489d5fcbd
+b1f3786ce0580201a9e1,2018-12-16T07:01:55+09:00,pythonアプリケーションをrpmにパッケージング,https://qiita.com/mypaceshun/items/b1f3786ce0580201a9e1
+5067561d6739cc9e5199,2018-12-19T10:58:45+09:00,specファイル大解剖,https://qiita.com/mypaceshun/items/5067561d6739cc9e5199
+feedced17884d798fbbd,2016-03-14T13:03:04+09:00,XAMPPでApacheを起動しAndroidから接続,https://qiita.com/mypaceshun/items/feedced17884d798fbbd
+c489327d525522de5e65,2016-02-15T10:48:32+09:00,AndroidStudio2.0をインストールしてみる,https://qiita.com/mypaceshun/items/c489327d525522de5e65
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">qiitacli</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+<p class="caption"><span class="caption-text">Usage:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="article.html">1. 記事用ファイルの作成</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 記事の一覧取得</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload.html">3. 記事の投稿</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">4. 記事の更新</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">5. 記事の削除</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Changelog:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">6. 更新履歴</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="article.html" title="前の章へ">1. 記事用ファイルの作成</a></li>
+      <li>Next: <a href="upload.html" title="次の章へ">3. 記事の投稿</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, KAWAI Shun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/usage/list.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

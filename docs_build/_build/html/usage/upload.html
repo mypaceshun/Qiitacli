@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>3. 記事の投稿 &#8212; qiitacli  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4. 記事の更新" href="update.html" />
+    <link rel="prev" title="2. 記事の一覧取得" href="list.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>3. 記事の投稿<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>記事の投稿には <code class="docutils literal notranslate"><span class="pre">upload</span></code> サブコマンドを用います。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli upload --help
+Usage: qiitacli upload [OPTIONS] ARTICLE
+
+  Upload new article
+
+Options:
+  -f, --force  Force upload article
+  -T, --tweet  Tweet when article upload[Require Twitter linkage settnigs]
+  --help       Show this message and exit.
+</pre></div>
+</div>
+<p>オプション無しで実行するとアクセストークンで認証しているユーザー記事を投稿します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli upload article/qiitacli.md
+Are you sure you want to upload? [y/N]: y
+status code: 201
+</pre></div>
+</div>
+<p>--tweet オプションを追加すると、Qiitaのアカウントに連携しているTwitterのアカウントで記事が投稿されたことをつぶやきます。
+これを利用するにはQiitaのアカウントにTwitterのアカウントが連携されている必要があります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qiitacli upload --tweet article/qiitacli.md
+Are you sure you want to upload? [y/N]: y
+status code: 201
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">qiitacli</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+<p class="caption"><span class="caption-text">Usage:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="article.html">1. 記事用ファイルの作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list.html">2. 記事の一覧取得</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 記事の投稿</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">4. 記事の更新</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">5. 記事の削除</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Changelog:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">6. 更新履歴</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="list.html" title="前の章へ">2. 記事の一覧取得</a></li>
+      <li>Next: <a href="update.html" title="次の章へ">4. 記事の更新</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, KAWAI Shun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/usage/upload.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

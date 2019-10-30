@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>1. 記事用ファイルの作成 &#8212; qiitacli  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2. 記事の一覧取得" href="list.html" />
+    <link rel="prev" title="Welcome to QiitaCLI&#39;s documentation!" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>1. 記事用ファイルの作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>記事用のファイルのサンプルは以下の用になります。</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>--
+title: Qiita CLI Applicationを作ってみた
+tags:
+  <span class="k">-</span> Python
+  <span class="k">-</span> Click
+private: yes
+---
+<span class="gh">#</span> ことのはじまり
+
+Qiitaに記事書きたいけどブラウザ開いていちいちQiitaのエディタ開くのめんどいな〜
+
+<span class="sb">`Vim`</span>使って`MarkDown`で記述してアップロードしたいな〜
+
+よっしゃ作ったろ！
+
+<span class="gh">#</span> Qiita に記事をアップロードするコマンド
+
+漠然としたイメージとしては、手頃なテキストエディタで`article.md`のようなファイルを作成し、
+
+``` console
+$ qiitacli upload [記事のtitle] article.md
+```
+
+と叩いたら記事がアップロードされるイメージ。`Python`と`Click`というモジュールを使ったらできそう。
+なぜ`Python`なのかと言うと私が一番使い慣れているからです。
+</pre></div>
+</div>
+<p>ファイルの先頭に <code class="docutils literal notranslate"><span class="pre">---</span></code> を記述し、次に <code class="docutils literal notranslate"><span class="pre">---</span></code> が現れるまでをYAMLヘッダーと認識します。
+それ以降は記事本文になりますので、 <a class="reference external" href="https://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita Markdown</a> にかかれている記法で記事を書いてください。</p>
+<div class="section" id="yaml">
+<h2>1.1. YAMLヘッダー<a class="headerlink" href="#yaml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイル先頭に記述するYAMLヘッダーには以下の情報が記述できます。</p>
+<dl class="simple">
+<dt>title</dt><dd><p>記事タイトル (必須)</p>
+</dd>
+<dt>tags</dt><dd><p>記事に付けるタグ (1つ以上必須)</p>
+</dd>
+<dt>private</dt><dd><p>限定公開の設定</p>
+</dd>
+</dl>
+<p>上記以外の設定は無視されます。</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">qiitacli</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+<p class="caption"><span class="caption-text">Usage:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 記事用ファイルの作成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#yaml">1.1. YAMLヘッダー</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="list.html">2. 記事の一覧取得</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload.html">3. 記事の投稿</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">4. 記事の更新</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">5. 記事の削除</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Changelog:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">6. 更新履歴</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="前の章へ">Welcome to QiitaCLI's documentation!</a></li>
+      <li>Next: <a href="list.html" title="次の章へ">2. 記事の一覧取得</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, KAWAI Shun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/usage/article.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

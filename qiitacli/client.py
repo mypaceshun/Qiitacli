@@ -115,7 +115,7 @@ def upload(article, force, tweet):
         click.echo('post params: {}'.format(params))
 
     if not force:
-        click.confirm('Are you sure you want to delete?', abort=True)
+        click.confirm('Are you sure you want to upload?', abort=True)
 
     res = None
     try:

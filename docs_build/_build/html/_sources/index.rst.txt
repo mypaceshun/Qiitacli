@@ -6,8 +6,17 @@
 .. include:: ../README.rst
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :numbered:
+   :caption: Usage:
+
+   usage/article.rst
+   usage/list.rst
+   usage/upload.rst
+   usage/update.rst
+   usage/delete.rst
+
+.. toctree::
+   :caption: Changelog:
 
    changelog.rst
 
