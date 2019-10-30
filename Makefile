@@ -4,6 +4,8 @@ PIPENV           = pipenv
 
 VENV             = .venv
 
+TARGET           = testpypi
+
 
 .PHONY: usage
 usage:
@@ -13,6 +15,8 @@ usage:
 	@echo "  init           init for develop"
 	@echo "  test           run pytest"
 	@echo "  build          package build"
+	@echo "  upload         upload to ${TARGET}"
+	@echo "    TARGET=pypi  upload to pypi"
 	@echo "  lint           run flake8"
 	@echo "  format         run some formatter"
 	@echo "  clean          clean current directory"
@@ -29,6 +33,12 @@ test:
 build:
 	${MAKE} -s clean
 	${PIPENV} run python setup.py sdist bdist_wheel
+	${PIPENV} run twine check dist/*
+
+.PHONY: upload
+upload:
+	${MAKE} -s build
+	${PIPENV} run twine upload --repository ${TARGET} dist/*
 
 .PHONY: lint
 lint:

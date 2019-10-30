@@ -11,6 +11,7 @@ autoflake = "*"
 pytest = "*"
 pytest-cov = "*"
 qiitcli = {path = "."}
+twine = "*"
 
 [packages]
 

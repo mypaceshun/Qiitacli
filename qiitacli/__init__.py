@@ -7,3 +7,4 @@ ACCESSTOKEN_PATH = os.environ.get(
     os.path.join(Path.home(), ".{}.secret".format(PRODUCT_NAME)))
 
 __version__ = '0.1.0'
+__name__ = PRODUCT_NAME
