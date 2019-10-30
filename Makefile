@@ -28,7 +28,7 @@ test:
 .PHONY: build
 build:
 	${MAKE} -s clean
-	${PIPENV} run python setup.py sdist
+	${PIPENV} run python setup.py sdist bdist_wheel
 
 .PHONY: lint
 lint:
