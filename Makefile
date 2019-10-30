@@ -15,6 +15,7 @@ usage:
 	@echo "  init           init for develop"
 	@echo "  test           run pytest"
 	@echo "  doc            build document"
+	@echo "  convert-readme convert README.md to README.rst"
 	@echo "  build          package build"
 	@echo "  upload         upload to ${TARGET}"
 	@echo "    TARGET=pypi  upload to pypi"
@@ -31,10 +32,17 @@ test:
 	${PIPENV} run python -m pytest tests
 
 .PHONY: doc
-doc:
+doc: README.rst
 	${PIPENV} run sphinx-apidoc -f -o docs_build/ qiitacli/
 	${PIPENV} run make -C docs_build/ html
 	cp -afvT docs_build/_build/html docs
+
+.PHONY: convert-readme
+README.rst: README.md
+	${PIPENV} run python -c \
+	    'import pypandoc; \
+	    print(pypandoc.convert("README.md", "rst", format="markdown_github"))' \
+	    > README.rst
 
 .PHONY: build
 build:

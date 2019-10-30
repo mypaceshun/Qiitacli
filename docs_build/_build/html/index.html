@@ -34,11 +34,106 @@
             
   <div class="section" id="welcome-to-qiitacli-s-documentation">
 <h1>Welcome to qiitacli's documentation!<a class="headerlink" href="#welcome-to-qiitacli-s-documentation" title="このヘッドラインへのパーマリンク">¶</a></h1>
+</div>
+<div class="section" id="qiitacli">
+<h1>QiitaCLI<a class="headerlink" href="#qiitacli" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://travis-ci.org/mypaceshun/qiitacli"><img alt="Build Status" src="https://travis-ci.org/mypaceshun/qiitacli.svg?branch=master" /></a></div>
+<div class="line"><a class="reference external" href="https://codecov.io/gh/mypaceshun/qiitacli"><img alt="codecov" src="https://codecov.io/gh/mypaceshun/qiitacli/branch/master/graph/badge.svg" /></a></div>
+<div class="line"><a class="reference external" href="https://pypi.org/project/qiitacli/"><img alt="PyPI" src="https://img.shields.io/pypi/v/qiitacli" /></a></div>
+</div>
+<p>Qiita CLI Client</p>
+<p>CUIでQiitaの投稿をしたくて作ったものです。</p>
+</div>
+<div class="section" id="install">
+<h1>Install<a class="headerlink" href="#install" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install qiitacli
+</pre></div>
+</div>
+</div>
+<div class="section" id="document">
+<h1>Document<a class="headerlink" href="#document" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><a class="reference external" href="https://mypaceshun.github.io/qiitacli">https://mypaceshun.github.io/qiitacli</a></p>
+</div>
+<div class="section" id="quickstart">
+<h1>QuickStart<a class="headerlink" href="#quickstart" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>事前準備<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>Qiitaにアカウントを作成</p></li>
+</ul>
+<p><a class="reference external" href="https://qiita.com/">https://qiita.com/</a></p>
+<ul class="simple">
+<li><p>Qiita個人用アクセストークンを取得</p></li>
+</ul>
+<p>Qiitaにログイン後、設定→アプリケーション→個人用アクセストークンのところから新しくトークンを発行する。</p>
+<p>スコープは<code class="docutils literal notranslate"><span class="pre">read_qiita</span></code>と<code class="docutils literal notranslate"><span class="pre">write_qiita</span></code>にチェックを入れてください。</p>
+<p>発行後アクセストークンが表示されるのでコピー
+<strong>ページを離れると再度アクセストークンを表示することは出来ません</strong></p>
+<ul class="simple">
+<li><p>statusコマンドを利用してアクセストークンを保存します。</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> qiitacli status
+<span class="go">Input your personal accesstoken: xxxxx</span>
+<span class="go">id              : mypaceshun</span>
+<span class="go">name            : shun kawai</span>
+<span class="go">location        : Tokyo Japan</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">アクセストークンはデフォルトで<code class="docutils literal notranslate"><span class="pre">$HOME/.qiitacli.secret</span></code>に保存されます。</div>
+<div class="line">このファイルを直接編集することでも、アクセストークンを設定出来ます。</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>記事一覧取得<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> qiitacli list -idu
+<span class="go">id|date|title|url</span>
+<span class="go">c3b97c4eee490d662092|2019-10-18T19:35:23+09:00|Qiita CLI Application 作ってみた|https://qiita.com/mypaceshun/items/c3b97c4eee490d662092</span>
+<span class="go">ab441d26a12489d5fcbd|2019-02-01T11:37:55+09:00|ansible 〜つなぐ〜|https://qiita.com/mypaceshun/items/ab441d26a12489d5fcbd</span>
+<span class="go">b1f3786ce0580201a9e1|2018-12-16T07:01:55+09:00|pythonアプリケーションをrpmにパッケージング|https://qiita.com/mypaceshun/items/b1f3786ce0580201a9e1</span>
+<span class="go">5067561d6739cc9e5199|2018-12-19T10:58:45+09:00|specファイル大解剖|https://qiita.com/mypaceshun/items/5067561d6739cc9e5199</span>
+<span class="go">feedced17884d798fbbd|2016-03-14T13:03:04+09:00|XAMPPでApacheを起動しAndroidから接続|https://qiita.com/mypaceshun/items/feedced17884d798fbbd</span>
+<span class="go">c489327d525522de5e65|2016-02-15T10:48:32+09:00|AndroidStudio2.0をインストールしてみる|https://qiita.com/mypaceshun/items/c489327d525522de5e65</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>記事の投稿<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> qiitacli upload article.md
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">記事用の<code class="docutils literal notranslate"><span class="pre">Markdown</span></code>ファイルでは、YAML形式のヘッダーを利用して、タイトルやタグなどの情報を記述します。</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">title</span></code>と<code class="docutils literal notranslate"><span class="pre">tags</span></code>の情報が必須で、設定が無い場合はコマンドが失敗します。</div>
+</div>
+<p><a class="reference external" href="article/qiitacli.md">qiitacli.md</a> を参考にしてください。</p>
+</div>
+<div class="section" id="id4">
+<h2>記事の更新<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> qiitacli update articleid article.md
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">記事を更新する際は投稿に用いた<code class="docutils literal notranslate"><span class="pre">Markdown</span></code>ファイルと同様の形式で記事用ファイルを用意してください。</div>
+<div class="line">また上書きするための更新対象の記事のIDが必要になります。</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">list</span></code>コマンドなどを用いて更新対象の記事のIDを探してみてください。</p>
+</div>
+<div class="section" id="id5">
+<h2>記事の削除<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> qiitacli delete articleid
+</pre></div>
+</div>
+<p>記事の削除では、削除対象の記事のIDが必要になります。</p>
+<p><code class="docutils literal notranslate"><span class="pre">list</span></code>コマンドなどを用いて削除対象の記事のIDを探してみてください。</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">更新履歴</a></li>
 </ul>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
