@@ -14,6 +14,7 @@ def test_status():
     assert result.exit_code == 0
     remove_accesstoken()
 
+
 def test_status_bad_accesstoken():
     write_accesstoken('bud access token')
     runner = CliRunner()

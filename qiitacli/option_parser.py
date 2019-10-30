@@ -1,7 +1,8 @@
 import yaml
 from yaml.error import YAMLError
-from pathlib import Path
+
 from qiitacli.exceptions import QiitaCliParseError
+
 
 def parse(filestream, separator='---'):
     '''
@@ -22,6 +23,7 @@ def parse(filestream, separator='---'):
     body = parse_body(lines)
     res = {'options': options, 'body': body}
     return res
+
 
 def parse_option(lines, separator='---'):
     '''
@@ -51,8 +53,9 @@ def parse_option(lines, separator='---'):
             msg = 'options validate is failed.'
             msg += '{} is required.'.format(require_option)
             raise QiitaCliParseError(msg)
-            
+
     return options
+
 
 def parse_body(lines, separator='---'):
     '''

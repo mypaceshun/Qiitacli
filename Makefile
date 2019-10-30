@@ -12,6 +12,7 @@ usage:
 	@echo "Targets:"
 	@echo "  init           init for develop"
 	@echo "  test           run pytest"
+	@echo "  build          package build"
 	@echo "  lint           run flake8"
 	@echo "  format         run some formatter"
 	@echo "  clean          clean current directory"
@@ -24,6 +25,11 @@ init:
 test:
 	${PIPENV} run python -m pytest tests
 
+.PHONY: build
+build:
+	${MAKE} -s clean
+	${PIPENV} run python setup.py sdist
+
 .PHONY: lint
 lint:
 	${PIPENV} run flake8 qiitacli tests
@@ -34,11 +40,10 @@ format:
 	    --remove-all-unused-imports \
 	    --ignore-init-module-imports \
 	    --remove-unused-variables \
-	    qiitacli
+	    qiitacli tests
 	${PIPENV} run isort -rc qiitacli tests
 	${PIPENV} run autopep8 -ir qiitacli tests
 
 .PHONY: clean
 clean:
-	${PIPENV} --rm
 	rm -rf build dist *egg-info

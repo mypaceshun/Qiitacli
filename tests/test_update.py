@@ -1,9 +1,9 @@
-import pytest
 from pathlib import Path
+
 from click.testing import CliRunner
+from qiita_v2.exception import QiitaApiException
 
 from qiitacli.client import cmd
-from qiita_v2.exception import QiitaApiException
 
 from . import load_accesstoken, remove_accesstoken, write_accesstoken
 
@@ -21,29 +21,37 @@ private: yes
 def dammy_patch_success(*args, **kwargs):
     class dammy_response:
         status = 200
+
         def to_json(self):
             return {'success': 'success'}
 
     return dammy_response()
 
+
 def dammy_patch_error(*args, **kwargs):
     raise QiitaApiException('error')
+
 
 def dammy_get_success(*args, **kwargs):
     class dammy_response:
         status = 200
+
         def to_json(self):
             return {'title': 'DammyArticle'}
 
     return dammy_response()
 
+
 def dammy_get_error(*args, **kwargs):
     raise QiitaApiException('error')
 
+
 def test_update(monkeypatch):
 
-    monkeypatch.setattr('qiita_v2.client.QiitaClient.update_item', dammy_patch_success)
-    monkeypatch.setattr('qiita_v2.client.QiitaClient.get_item', dammy_get_success)
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.update_item', dammy_patch_success)
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.get_item', dammy_get_success)
 
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
@@ -63,8 +71,10 @@ def test_update(monkeypatch):
     remove_accesstoken()
     dammy_article.unlink()
 
+
 def test_update_error_invalid_article_id(monkeypatch):
-    monkeypatch.setattr('qiita_v2.client.QiitaClient.get_item', dammy_get_error)
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.get_item', dammy_get_error)
 
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
@@ -85,9 +95,12 @@ def test_update_error_invalid_article_id(monkeypatch):
     remove_accesstoken()
     dammy_article.unlink()
 
+
 def test_update_error(monkeypatch):
-    monkeypatch.setattr('qiita_v2.client.QiitaClient.update_item', dammy_patch_error)
-    monkeypatch.setattr('qiita_v2.client.QiitaClient.get_item', dammy_get_success)
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.update_item', dammy_patch_error)
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.get_item', dammy_get_success)
 
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)

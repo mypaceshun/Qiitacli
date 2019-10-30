@@ -22,13 +22,17 @@ def get_accesstoken():
     if not tokenpath.exists():
         set_accesstoken()
 
+    token = ''
     try:
         with tokenpath.open('r') as f:
             token = f.readline().strip()
-            return token
     except OSError as err:
         msg = 'AccessToken file Read Error: {}'.format(err)
         raise QiitaCliException(msg)
+
+    if len(token) < 1:
+        token = set_accesstoken()
+    return token
 
 
 def set_accesstoken(token=None):

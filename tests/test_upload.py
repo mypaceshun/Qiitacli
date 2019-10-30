@@ -1,12 +1,11 @@
-import pytest
 from pathlib import Path
-from click.testing import CliRunner
 
-from qiitacli.client import cmd
+from click.testing import CliRunner
 from qiita_v2.exception import QiitaApiException
 
-from . import load_accesstoken, remove_accesstoken, write_accesstoken
+from qiitacli.client import cmd
 
+from . import load_accesstoken, remove_accesstoken, write_accesstoken
 
 dammy_article_text = '''
 title: dammy article
@@ -22,17 +21,21 @@ private: yes
 def dammy_post_success(*args, **kwargs):
     class dammy_response:
         status = 200
+
         def to_json(self):
             return {'success': 'success'}
 
     return dammy_response()
 
+
 def dammy_post_error(*args, **kwargs):
     raise QiitaApiException('error')
 
+
 def test_upload(monkeypatch):
 
-    monkeypatch.setattr('qiita_v2.client.QiitaClient.create_item', dammy_post_success)
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.create_item', dammy_post_success)
 
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)
@@ -52,8 +55,10 @@ def test_upload(monkeypatch):
     remove_accesstoken()
     dammy_article.unlink()
 
+
 def test_upload_error(monkeypatch):
-    monkeypatch.setattr('qiita_v2.client.QiitaClient.create_item', dammy_post_error)
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.create_item', dammy_post_error)
 
     dammy_article_path = 'dammy_article.md'
     dammy_article = Path(dammy_article_path)

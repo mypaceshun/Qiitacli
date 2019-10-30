@@ -5,8 +5,8 @@ from qiita_v2.client import QiitaClient
 from qiita_v2.exception import QiitaApiException
 
 from qiitacli.accesstoken import get_accesstoken
-from qiitacli.option_parser import parse
 from qiitacli.exceptions import QiitaCliParseError
+from qiitacli.option_parser import parse
 
 VERBOSE = False
 
@@ -90,7 +90,6 @@ def upload(article, force, tweet):
     token = get_accesstoken()
     client = QiitaClient(access_token=token)
     params = {}
-
 
     option_with_body = None
     try:

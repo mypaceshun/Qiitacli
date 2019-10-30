@@ -15,6 +15,7 @@ def test_list():
     assert result.exit_code == 0
     remove_accesstoken()
 
+
 def test_list_bad_accesstoken():
     write_accesstoken('bad accesstoken')
     runner = CliRunner()
