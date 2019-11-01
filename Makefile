@@ -47,7 +47,7 @@ README.rst: README.md
 .PHONY: build
 build:
 	${MAKE} -s clean
-	${PIPENV} run python setup.py sdist bdist_wheel
+	${PIPENV} run python setup.py bdist_wheel sdist --format=gztar,zip
 	${PIPENV} run twine check dist/*
 
 .PHONY: upload
