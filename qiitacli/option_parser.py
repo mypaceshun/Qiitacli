@@ -48,6 +48,9 @@ def parse_option(lines, separator='---'):
     except YAMLError as error:
         raise QiitaCliParseError(error)
 
+    if not isinstance(options, dict):
+        raise QiitaCliParseError('{} is not dict'.format(options))
+
     for require_option in require_options:
         if require_option not in options.keys():
             msg = 'options validate is failed.'
