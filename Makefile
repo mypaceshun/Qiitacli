@@ -55,7 +55,7 @@ build:
 .PHONY: upload
 upload:
 	${MAKE} -s build
-	${PIPENV} run twine upload --repository ${TARGET} dist/*
+	${PIPENV} run twine upload --repository ${TARGET} dist/*.tar.gz dist/*.whl
 
 .PHONY: lint
 lint:
