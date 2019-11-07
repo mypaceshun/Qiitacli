@@ -11,7 +11,7 @@ def load_accesstoken():
     if token is not None:
         return token
 
-    token_path = Path('etc/accesstoken.secret')  # for pytest
+    token_path = Path('.accesstoken.secret')  # for pytest
     if token_path.exists():
         with token_path.open("r") as f:
             token = f.readline()
