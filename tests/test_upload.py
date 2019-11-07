@@ -3,7 +3,9 @@ from pathlib import Path
 from click.testing import CliRunner
 from qiita_v2.exception import QiitaApiException
 
+import qiitacli.option_parser
 from qiitacli.client import cmd
+from qiitacli.exceptions import QiitaCliParseError
 
 from . import load_accesstoken, remove_accesstoken, write_accesstoken
 
@@ -64,6 +66,31 @@ def test_upload_error(monkeypatch):
     dammy_article = Path(dammy_article_path)
     with dammy_article.open('w') as f:
         f.write(dammy_article_text)
+
+    token = load_accesstoken()
+    write_accesstoken(token)
+    runner = CliRunner()
+    commands = ['upload',
+                '--tweet',
+                '--force',
+                dammy_article_path]
+    result = runner.invoke(cmd, commands)
+    print(result.output)
+    assert result.exit_code == 1
+
+    remove_accesstoken()
+    dammy_article.unlink()
+
+def test_upload_parse_error():
+    dammy_article_path = 'dammy_article.md'
+    dammy_article = Path(dammy_article_path)
+    dammy_article_text_invalid_yaml_header = '''This is
+invalid
+YAML header
+;-)
+'''
+    with dammy_article.open('w') as f:
+        f.write(dammy_article_text_invalid_yaml_header)
 
     token = load_accesstoken()
     write_accesstoken(token)

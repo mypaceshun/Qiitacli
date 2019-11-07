@@ -120,3 +120,31 @@ def test_update_error(monkeypatch):
 
     remove_accesstoken()
     dammy_article.unlink()
+
+def test_update_parse_error(monkeypatch):
+    monkeypatch.setattr(
+        'qiita_v2.client.QiitaClient.get_item', dammy_get_success)
+
+    dammy_article_path = 'dammy_article.md'
+    dammy_article = Path(dammy_article_path)
+    dammy_article_text_invalid_yaml_header = '''This is
+invalid
+YAML header
+;-)
+'''
+    with dammy_article.open('w') as f:
+        f.write(dammy_article_text_invalid_yaml_header)
+
+    token = load_accesstoken()
+    write_accesstoken(token)
+    runner = CliRunner()
+    commands = ['update',
+                '--force',
+                'DammyArticleID',
+                dammy_article_path]
+    result = runner.invoke(cmd, commands)
+    print(result.output)
+    assert result.exit_code == 1
+
+    remove_accesstoken()
+    dammy_article.unlink()

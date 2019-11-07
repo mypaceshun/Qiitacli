@@ -113,3 +113,20 @@ def test_get_accesstoken_error(monkeypatch):
     with pytest.raises(QiitaCliException):
         get_accesstoken()
     os.remove(TEST_ACCESSTOKEN_PATH)
+
+def test_set_brank_accesstoken(monkeypatch):
+    tokenstr = ""
+    inputstr = "accesstoken"
+    p = Path(TEST_ACCESSTOKEN_PATH)
+    with p.open("w") as f:
+        f.write(tokenstr)
+
+    def mockreturn(args):
+        return inputstr
+
+    monkeypatch.setattr("builtins.input", mockreturn)
+    monkeypatch.setattr("os.umask", mockreturn)
+
+    token = get_accesstoken()
+    assert token == inputstr
+    os.remove(TEST_ACCESSTOKEN_PATH)
