@@ -15,6 +15,7 @@
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="qiitacli" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -38,6 +39,7 @@
 </div>
 <div class="section" id="module-qiitacli.accesstoken">
 <span id="qiitacli-accesstoken-module"></span><h2>qiitacli.accesstoken module<a class="headerlink" href="#module-qiitacli.accesstoken" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Qiita API v2 を利用するためのアクセストークンの読み込みを行う</p>
 <dl class="function">
 <dt id="qiitacli.accesstoken.get_accesstoken">
 <code class="sig-prename descclassname">qiitacli.accesstoken.</code><code class="sig-name descname">get_accesstoken</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qiitacli/accesstoken.html#get_accesstoken"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.accesstoken.get_accesstoken" title="この定義へのパーマリンク">¶</a></dt>
@@ -72,9 +74,11 @@ When token is None, Accesstoken read from stdin.</p>
 </div>
 <div class="section" id="module-qiitacli.client">
 <span id="qiitacli-client-module"></span><h2>qiitacli.client module<a class="headerlink" href="#module-qiitacli.client" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Clickを利用してCLIアプリケーションのメインとなるモジュール</p>
 </div>
 <div class="section" id="module-qiitacli.exceptions">
 <span id="qiitacli-exceptions-module"></span><h2>qiitacli.exceptions module<a class="headerlink" href="#module-qiitacli.exceptions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Exceptions</p>
 <dl class="exception">
 <dt id="qiitacli.exceptions.QiitaCliException">
 <em class="property">exception </em><code class="sig-prename descclassname">qiitacli.exceptions.</code><code class="sig-name descname">QiitaCliException</code><a class="reference internal" href="_modules/qiitacli/exceptions.html#QiitaCliException"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.exceptions.QiitaCliException" title="この定義へのパーマリンク">¶</a></dt>
@@ -90,6 +94,7 @@ When token is None, Accesstoken read from stdin.</p>
 </div>
 <div class="section" id="module-qiitacli.option_parser">
 <span id="qiitacli-option-parser-module"></span><h2>qiitacli.option_parser module<a class="headerlink" href="#module-qiitacli.option_parser" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>記事ファイルのYAMLヘッダーをパースするためのモジュール</p>
 <dl class="function">
 <dt id="qiitacli.option_parser.parse">
 <code class="sig-prename descclassname">qiitacli.option_parser.</code><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">filestream</em>, <em class="sig-param">separator='---'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qiitacli/option_parser.html#parse"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#qiitacli.option_parser.parse" title="この定義へのパーマリンク">¶</a></dt>
@@ -162,6 +167,7 @@ When token is None, Accesstoken read from stdin.</p>
 </div>
 <div class="section" id="module-qiitacli">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-qiitacli" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Qiita API v2 を利用してQiitaへの記事投稿・削除・更新などを行う</p>
 </div>
 </div>
 
@@ -189,13 +195,26 @@ When token is None, Accesstoken read from stdin.</p>
 <li class="toctree-l1"><a class="reference internal" href="usage/upload.html">3. 記事の投稿</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/update.html">4. 記事の更新</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/delete.html">5. 記事の削除</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">6. 更新履歴</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Changelog:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">更新履歴</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">qiitacli</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">qiitacli package</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">qiitacli</a><ul>
+      <li>Previous: <a href="modules.html" title="前の章へ">qiitacli</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

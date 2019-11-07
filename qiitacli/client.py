@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+'''
+Clickを利用してCLIアプリケーションのメインとなるモジュール
+'''
 
 import click
 from qiita_v2.client import QiitaClient

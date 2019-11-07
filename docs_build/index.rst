@@ -20,6 +20,12 @@
 
    changelog.rst
 
+.. toctree::
+   :caption: API Reference
+   :maxdepth: 2
+
+   modules.rst
+
 
 * :ref:`genindex`
 * :ref:`modindex`

@@ -94,3 +94,7 @@ $ qiitacli delete articleid
 記事の削除では、削除対象の記事のIDが必要になります。
 
 `list`コマンドなどを用いて削除対象の記事のIDを探してみてください。
+
+# Release
+
+[リリースノート](https://github.com/mypaceshun/qiitacli/releases)

@@ -15,7 +15,7 @@ usage:
 	@echo "  init           init for develop"
 	@echo "  test           run pytest"
 	@echo "  doc            build document"
-	@echo "  convert-readme convert README.md to README.rst"
+	@echo "  readme         convert README.md to README.rst"
 	@echo "  build          package build"
 	@echo "  upload         upload to ${TARGET}"
 	@echo "    TARGET=pypi  upload to pypi"
@@ -37,7 +37,9 @@ doc: README.rst
 	${PIPENV} run make -C docs_build/ html
 	cp -afvT docs_build/_build/html docs
 
-.PHONY: convert-readme
+.PHONY: readme
+readme:
+	@${MAKE} -s README.rst
 README.rst: README.md
 	${PIPENV} run python -c \
 	    'import pypandoc; \

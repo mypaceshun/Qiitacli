@@ -1,3 +1,6 @@
+'''
+記事ファイルのYAMLヘッダーをパースするためのモジュール
+'''
 import yaml
 from yaml.error import YAMLError
 

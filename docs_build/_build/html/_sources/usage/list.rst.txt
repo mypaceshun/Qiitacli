@@ -11,12 +11,18 @@
      List your article
 
    Options:
-     -i, --id              Show with article id
-     -d, --date            Show with article update date
-     -t, --tags            Show with article tags
-     -u, --url             Show with article url
-     -s, --separator TEXT  separator
-     --help                Show this message and exit.
+     -i, --id                      Show with article id
+     -d, --date                    Show with article update date
+     -t, --tags                    Show with article tags
+     -u, --url                     Show with article url
+     -s, --separator TEXT          separator
+     -P, --per-page INTEGER RANGE  Number of articles per page
+     -p, --page INTEGER RANGE      View page number
+     --help                        Show this message and exit.
+
+.. versionadded:: 1.1.0
+
+   per-page オプションと page オプションが追加されました。
 
 オプション無しで実行するとアクセストークンで認証しているユーザーの投稿した記事の一覧が出力されます。
 1行目がヘッダーで2行目以降が取得した記事のタイトル一覧になります。
@@ -31,10 +37,6 @@
    specファイル大解剖
    XAMPPでApacheを起動しAndroidから接続
    AndroidStudio2.0をインストールしてみる
-
-.. WARNING::
-   ページネーションの処理が未実装なので最新20件までしか表示されません。
-   そのうち実装します。
 
 オプションを追加することで、表示される情報の量を増やすことが出来ます。
 

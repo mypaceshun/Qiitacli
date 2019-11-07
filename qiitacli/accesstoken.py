@@ -1,3 +1,6 @@
+'''
+Qiita API v2 を利用するためのアクセストークンの読み込みを行う
+'''
 import os
 from pathlib import Path
 

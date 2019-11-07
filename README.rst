@@ -103,6 +103,11 @@ Qiitaにログイン後、設定→アプリケーション→個人用アクセ
 
 ``list``\ コマンドなどを用いて削除対象の記事のIDを探してみてください。
 
+Release
+=======
+
+`リリースノート <https://github.com/mypaceshun/qiitacli/releases>`__
+
 .. |Build Status| image:: https://travis-ci.org/mypaceshun/qiitacli.svg?branch=master
    :target: https://travis-ci.org/mypaceshun/qiitacli
 .. |codecov| image:: https://codecov.io/gh/mypaceshun/qiitacli/branch/master/graph/badge.svg
