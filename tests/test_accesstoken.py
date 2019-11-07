@@ -114,6 +114,7 @@ def test_get_accesstoken_error(monkeypatch):
         get_accesstoken()
     os.remove(TEST_ACCESSTOKEN_PATH)
 
+
 def test_set_brank_accesstoken(monkeypatch):
     tokenstr = ""
     inputstr = "accesstoken"

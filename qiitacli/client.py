@@ -28,7 +28,7 @@ def cmd(verbose):
 @click.option('--tags', '-t', is_flag=True, help='Show with article tags')
 @click.option('--url', '-u', is_flag=True, help='Show with article url')
 @click.option('--separator', '-s', help='separator')
-@click.option('--per-page', '-P', type=click.IntRange(1, 100), default=20, help='Number of articles per page')
+@click.option('--per-page', '-P', type=click.IntRange(1, 100), default=20, help='Number of articles per page')  # noqa E501
 @click.option('--page', '-p', type=click.IntRange(1, 100), default=1, help='View page number')  # noqa E501
 def list(id, date, tags, url, separator, per_page, page):
     '''
@@ -38,8 +38,8 @@ def list(id, date, tags, url, separator, per_page, page):
     client = QiitaClient(access_token=token)
     res = None
     options = {
-            'per_page': per_page, 
-            'page': page}
+        'per_page': per_page,
+        'page': page}
     try:
         res = client.get_authenticated_user_items(options)
     except QiitaApiException as error:

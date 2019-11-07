@@ -121,6 +121,7 @@ def test_update_error(monkeypatch):
     remove_accesstoken()
     dammy_article.unlink()
 
+
 def test_update_parse_error(monkeypatch):
     monkeypatch.setattr(
         'qiita_v2.client.QiitaClient.get_item', dammy_get_success)

@@ -3,9 +3,7 @@ from pathlib import Path
 from click.testing import CliRunner
 from qiita_v2.exception import QiitaApiException
 
-import qiitacli.option_parser
 from qiitacli.client import cmd
-from qiitacli.exceptions import QiitaCliParseError
 
 from . import load_accesstoken, remove_accesstoken, write_accesstoken
 
@@ -80,6 +78,7 @@ def test_upload_error(monkeypatch):
 
     remove_accesstoken()
     dammy_article.unlink()
+
 
 def test_upload_parse_error():
     dammy_article_path = 'dammy_article.md'
