@@ -47,7 +47,7 @@ jobs:
         DIST_DIR: $TRAVIS_BUILD_NUMBER/3.7/
 
 before_install:
-  - pip install --user awscli
+  - pip install awscli
   - mkdir -p ~/$TRAVIS_BUILD_NUMBER
   - aws s3 sync s3://travis-build-stages-shared-storage-test/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
 
