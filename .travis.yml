@@ -6,7 +6,9 @@ install:
 - "./.travis/install.sh"
 - pipenv install -d codecov
 script:
-- "./.travis/run-test.sh"
+- "./.travis/unit-test.sh"
+- "./.travis/build-test.sh"
+- "./.travis/package-test.sh"
 after_success:
 - codecov
 env:
