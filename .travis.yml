@@ -1,7 +1,8 @@
 language: python
-python:
-- '3.6'
-- '3.7'
+versions: &versions
+  python:
+  - '3.6'
+  - '3.7'
 
 stages:
   - unit-test
@@ -14,14 +15,17 @@ jobs:
       name: Unit Test
       script:
         - "./.travis/unit-test.sh"
+      <<: *versions
     - stage: build-test
       name: Build Test
       script:
         - "./.travis/build-test.sh"
+      <<: *versions
     - stage: package-test
       name: Package Test
       script:
         - "./.travis/package-test.sh"
+      <<: *versions
 
 install:
 - "./.travis/install.sh"
