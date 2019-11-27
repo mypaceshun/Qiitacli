@@ -10,13 +10,15 @@ isort = "*"
 autoflake = "*"
 pytest = "*"
 pytest-cov = "*"
-qiitcli = {path = "."}
+qiitcli = {editable = true, path = "."}
 twine = "*"
 sphinx = "*"
 sphinx-git = "*"
 pypandoc = "*"
 
 [packages]
+click = ">=7.0"
+qiita_v2 = ">=0.2.1"
 
 [requires]
 python_version = "3"
