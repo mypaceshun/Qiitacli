@@ -2,6 +2,9 @@
 
 PYTHON=python3
 TMP_VENV_DIR=tmp
+DIST_DIR=dist
+
+make build
 
 mkdir -p cache
 curl -L -o cache/assert.tar.gz https://github.com/yosugi/assert.bash/archive/v0.3.0.tar.gz
