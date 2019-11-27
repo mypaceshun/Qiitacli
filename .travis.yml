@@ -22,21 +22,34 @@ jobs:
       script:
         - "./.travis/build-test.sh"
       python: '3.6'
+      env:
+        DIST_DIR: $TRAVIS_BUILD_NUMBER/3.6/
     - stage: build-test
       name: Build Test
       script:
         - "./.travis/build-test.sh"
       python: '3.7'
+      env:
+        DIST_DIR: $TRAVIS_BUILD_NUMBER/3.7/
     - stage: package-test
       name: Package Test
       script:
         - "./.travis/package-test.sh"
       python: '3.6'
+      env:
+        DIST_DIR: $TRAVIS_BUILD_NUMBER/3.6/
     - stage: package-test
       name: Package Test
       script:
         - "./.travis/package-test.sh"
       python: '3.7'
+      env:
+        DIST_DIR: $TRAVIS_BUILD_NUMBER/3.7/
+
+before_install:
+  - pip install --user awscli
+  - mkdir -p ~/$TRAVIS_BUILD_NUMBER
+  - aws s3 sync s3://travis-build-stages-shared-storage-test/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
 
 install:
 - "./.travis/install.sh"
@@ -46,4 +59,5 @@ after_success:
 - codecov
 env:
   global:
+    PATH: $HOME/.local/bin:$PATH
     secure: JF2PbJrx65c6XpKV2571hN4owJcSNrqoLw7s08Dvnqu/KcUoUW9o8uCL1bCqXuQVQ48+e2BGAeEbka59+JB+s2PG5x2G2sAXBZn+QL+0YwAbyT5GwIjFlOPlOsbor7ta8yrTXbHqqAOtDRKuc6eug4yHQtu0yCudUYYP3ufKX7aAS9D8Hl/0mJJyTwqyfSG8boEoP2zrcekCZGPTVCa2QJX2NKOkSZcVQruISQzOgJl0L1MxWTWe1xfMJyb/FhEoaSh1TIXvuYIpj1TTFc76P2PWZsHqmUn28+zj0MAzjuaDNO1ET/ZrImrrSMqTJLHSvpOvuvd8Xwj2Qhi6daFbZnj4JLczqSFbcPP9Y6QttlS+oRygUbrrzAQB/1kiEOZfCwPsnSuoXz7s4QLQiX4BBT84l4taEufBXW3tN9fpTjKLAA8SOCE0q7ZAU7Q11UGYteaMV0R0cxK1J2WqN5nwQ3LmRIIKUn/WE2gxVddSVvvrxhtlierOn48NxDc1gbS6g1204H7WLlj/1d9uqy669yRIomEJAO3YNAoXrh6Ulk7UmCf5amsh88na6LC+WQ6siXzyab7OS23FAe4F+K8mV80Q9H+eA219yqY65asXvg2yj2DoG3qM2tK7DVacWmEMwSXPnpbS/QyscxTcDCROZdqnW+VYfTkP8675uSYlB/4=

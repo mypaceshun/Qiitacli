@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 PYTHON=python3
-DIST_DIR=dist
 TMP_VENV_DIR=tmp
 
 mkdir -p cache
