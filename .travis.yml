@@ -2,13 +2,31 @@ language: python
 python:
 - '3.6'
 - '3.7'
+
+stages:
+  - unit-test
+  - build-test
+  - package-test
+
+jobs:
+  include:
+    - stage: unit-test
+      name: Unit Test
+      script:
+        - "./.travis/unit-test.sh"
+    - stage: build-test
+      name: Build Test
+      script:
+        - "./.travis/build-test.sh"
+    - stage: package-test
+      name: Package Test
+      script:
+        - "./.travis/package-test.sh"
+
 install:
 - "./.travis/install.sh"
 - pipenv install -d codecov
-script:
-- "./.travis/unit-test.sh"
-- "./.travis/build-test.sh"
-- "./.travis/package-test.sh"
+
 after_success:
 - codecov
 env:
