@@ -10,17 +10,17 @@ source cache/assert.bash-0.3.0/assert.bash
 
 # package find
 NUM=`ls dist/*.tar.gz | wc -l`
-assert ${NUM} -eq 1
+assert ${NUM} -eq 1 || exit 1
 
 NUM=`ls dist/*.whl | wc -l`
-assert ${NUM} -eq 1
+assert ${NUM} -eq 1 || exit 1
 
 # create venv
 ${PYTHON} -m venv ${TMP_VENV_DIR}
 ${TMP_VENV_DIR}/bin/python -m pip install -U setuptools wheel pip
 
 # install
-${TMP_VENV_DIR}/bin/python -m pip install ${DIST_DIR}/*.whl
+${TMP_VENV_DIR}/bin/python -m pip install ${DIST_DIR}/*.whl || exit 1
 
 
 # clean
