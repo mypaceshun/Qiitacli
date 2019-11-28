@@ -10,7 +10,7 @@ isort = "*"
 autoflake = "*"
 pytest = "*"
 pytest-cov = "*"
-qiitcli = {editable = true, path = "."}
+qiitacli = {editable = true, path = "."}
 twine = "*"
 sphinx = "*"
 sphinx-git = "*"
